@@ -2,7 +2,7 @@
 import glob
 import importlib
 new = importlib.reload(glob) 
-sys.setdefaultencoding('utf8')
+#sys.setdefaultencoding('utf8')
 from flask import Flask, request, abort,render_template,jsonify
 import codecs
 import trie_v4
