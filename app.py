@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*
-import sys  
-reload(sys)  
+import glob
+import importlib
+new = importlib.reload(glob) 
 sys.setdefaultencoding('utf8')
 from flask import Flask, request, abort,render_template,jsonify
 import codecs
@@ -17,7 +18,7 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, QuickReply, QuickReplyButton, MessageAction, CarouselTemplate, CarouselColumn, URIAction, TemplateSendMessage ,FlexSendMessage, CarouselContainer,\
-    BubbleContainer, ButtonComponent, BoxComponent, TextComponent, ImageComponent, SeparatorComponent, SpacerComponent, IconComponent, PostbackAction, PostbackEvent
+    BubbleContainer, ButtonComponent, BoxComponent, TextComponent, ImageComponent, SeparatorComponent, IconComponent, PostbackAction, PostbackEvent
 )
 
 app = Flask(__name__)
