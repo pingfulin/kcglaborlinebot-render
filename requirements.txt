@@ -5,6 +5,7 @@ psycopg2==2.8.6
 numpy==1.19.4
 Pillow==8.0.1
 pip>=6.0
+openpyxl==2.4.5
 lxml>=3.3.4
 pytest
 tox
