@@ -594,8 +594,8 @@ def FindRelated_Q_inFile(msg):
     Q_list = sorted(Q_list_temp,reverse=True) 
     return Q_list
 def ChangeWord(msg):
-    F= open(synonyms_filename,'r','utf-8')
-    content = F.read().encode('utf-8')
+    F= open(synonyms_filename, 'r', encoding='UTF-8')
+    content = F.read()
     rows = content.split('\n') 
     F.close()
     line = 0
