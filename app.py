@@ -137,8 +137,8 @@ def postback(event):
 def handle_message(event):
     msg = event.message.text
     reply_token = event.reply_token
-    #試著將原str改成int
-    id = int(event.source.user_id)
+    
+    id = str(event.source.user_id)
     print(msg)
     
     
