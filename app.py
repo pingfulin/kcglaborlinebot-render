@@ -52,10 +52,10 @@ booksheet = workbook.get_sheet_by_name(sheets[0])
 #ID_filename = '../ID.xlsx'
 
 
-QA_filename = './table/' + booksheet.cell(3,3).value + '.xlsx'
-synonyms_filename = './table/' + booksheet.cell(4,3).value + '.csv'
-ID_filename = './table/' + booksheet.cell(2,3).value + '.xlsx'
-URL_filename = './table/' + booksheet.cell(5,3).value + '.xlsx'
+QA_filename = './table/' + booksheet.cell(row=3, column=3).value + '.xlsx'
+synonyms_filename = './table/' + booksheet.cell(row=4, column=3).value + '.csv'
+ID_filename = './table/' + booksheet.cell(row=2, column=3).value + '.xlsx'
+URL_filename = './table/' + booksheet.cell(row=5, column=3).value + '.xlsx'
 ###################################
 #############取得LINEBOT資訊#######
 LINEinfo = './LINEBOT資訊.xlsx'
@@ -63,15 +63,15 @@ workbook = load_workbook(LINEinfo)
 sheets = workbook.get_sheet_names()         #从名称获取sheet
 booksheet = workbook.get_sheet_by_name(sheets[0])
 
-line_bot_api = LineBotApi(booksheet.cell(1,2).value)
-handler = WebhookHandler(booksheet.cell(2,2).value)
+line_bot_api = LineBotApi(booksheet.cell(row=1, column=2).value)
+handler = WebhookHandler(booksheet.cell(row=2, column=2).value)
 ###################################
 workbook = load_workbook(URL_filename)
 sheets = workbook.get_sheet_names()         #从名称获取sheet
 booksheet = workbook.get_sheet_by_name(sheets[0])
 
-Mediation_URL = booksheet.cell(1,2).value
-Feedback_URL = booksheet.cell(2,2).value
+Mediation_URL = booksheet.cell(row=1, column=2).value
+Feedback_URL = booksheet.cell(row=2, column=2).value
 ###################################
 
 trie = trie_v4.Trie()
