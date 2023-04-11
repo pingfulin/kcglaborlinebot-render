@@ -593,7 +593,7 @@ def FindRelated_Q_inFile(msg):
     Q_list = sorted(Q_list_temp,reverse=True) 
     return Q_list
 def ChangeWord(msg):
-    F=codecs.open(synonyms_filename,'r','utf-8')
+    F=codecs.open(synonyms_filename,'rt','utf-8')
     content = F.read().encode('utf-8')
     rows = content.split('\n') 
     F.close()
@@ -787,7 +787,7 @@ def creat_QAreply(Q_index,booksheet,id):
                                                                              TextComponent(text=booksheet.cell(row=Q_index[i],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
                                                                    contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
-                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(Q_index[i],Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_index[i],column=OfficeTel_column).value),margin='md'),
+                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_index[i],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_index[i],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label = '回前分類',text = value),margin='md')])))
         else:
             content.append(BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
