@@ -81,8 +81,8 @@ booksheet = workbook.get_sheet_by_name(sheets[0])
 row_num = 1
 for row in booksheet.rows:
     row_num += 1 
-    if(booksheet.cell(row_num,question_column).value != None):
-        trie.insert([booksheet.cell(row_num,MajorItem_column).value,booksheet.cell(row_num,Item1_column).value,booksheet.cell(row_num,Item2_column).value,booksheet.cell(row_num,Item3_column).value],row_num)
+    if(booksheet.cell(row=row_num,column=question_column).value != None):
+        trie.insert([booksheet.cell(row=row_num,column=MajorItem_column).value,booksheet.cell(row=row_num,column=Item1_column).value,booksheet.cell(row=row_num,column=Item2_column).value,booksheet.cell(row=row_num,column=Item3_column).value],row_num)
         
 print('tree 建立完成')
 
@@ -129,8 +129,8 @@ def postback(event):
     row_num = 1
     for row in booksheet.rows:              #配對答案
         row_num += 1
-        if(msg == booksheet.cell(row_num,question_column).value):
-            messages = TextSendMessage(text= booksheet.cell(row_num,question_column).value+ ':\n' + booksheet.cell(row_num,answer_column).value)
+        if(msg == booksheet.cell(row=row_num,column=question_column).value):
+            messages = TextSendMessage(text= booksheet.cell(row=row_num,column=question_column).value+ ':\n' + booksheet.cell(row=row_num,column=answer_column).value)
             line_bot_api.reply_message(event.reply_token, messages)
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -206,12 +206,12 @@ def creat_Reply(msg,id):
         row_num = 1
         for row in booksheet.rows:
             row_num += 1
-            if(booksheet.cell(row_num,ID_column).value == id):
-                booksheet.cell(row_num,state_column).value = '引導'
+            if(booksheet.cell(row=row_num,column=ID_column).value == id):
+                booksheet.cell(row=row_num,column=state_column).value = '引導'
                 break
-            elif(booksheet.cell(row_num,ID_column).value == None):
-                booksheet.cell(row_num,ID_column).value = id
-                booksheet.cell(row_num,state_column).value = '引導'
+            elif(booksheet.cell(row=row_num,column=ID_column).value == None):
+                booksheet.cell(row=row_num,column=ID_column).value = id
+                booksheet.cell(row=row_num,column=state_column).value = '引導'
                 break
         workbook.save(ID_filename)
         workbook.close()
@@ -235,12 +235,12 @@ def creat_Reply(msg,id):
         row_num = 1
         for row in booksheet.rows:
             row_num += 1
-            if(booksheet.cell(row_num,ID_column).value == id):
-                booksheet.cell(row_num,state_column).value = '搜索'
+            if(booksheet.cell(row=row_num,column=ID_column).value == id):
+                booksheet.cell(row=row_num,column=state_column).value = '搜索'
                 break
-            elif(booksheet.cell(row_num,ID_column).value == None):
-                booksheet.cell(row_num,ID_column).value = id
-                booksheet.cell(row_num,state_column).value = '搜索'
+            elif(booksheet.cell(row=row_num,column=ID_column).value == None):
+                booksheet.cell(row=row_num,column=ID_column).value = id
+                booksheet.cell(row=row_num,column=state_column).value = '搜索'
                 break
         workbook.save(ID_filename)
         workbook.close()
@@ -255,12 +255,12 @@ def creat_Reply(msg,id):
             row_num = 1
             for row in booksheet.rows:
                 row_num += 1
-                if(booksheet.cell(row_num,ID_column).value == id):
-                    booksheet.cell(row_num,state_column).value = '引導'
+                if(booksheet.cell(row=row_num,column=ID_column).value == id):
+                    booksheet.cell(row=row_num,column=state_column).value = '引導'
                     break
-                elif(booksheet.cell(row_num,ID_column).value == None):
-                    booksheet.cell(row_num,ID_column).value = id
-                    booksheet.cell(row_num,state_column).value = '引導'
+                elif(booksheet.cell(row=row_num,column=ID_column).value == None):
+                    booksheet.cell(row=row_num,column=ID_column).value = id
+                    booksheet.cell(row=row_num,column=state_column).value = '引導'
                     break
             workbook.save(ID_filename)
             workbook.close()  
@@ -274,15 +274,15 @@ def creat_Reply(msg,id):
             row_num = 1
             for row in booksheet.rows:              #配對答案
                 row_num += 1
-                if(msg == booksheet.cell(row_num,question_column).value):
+                if(msg == booksheet.cell(row=row_num,column=question_column).value):
                     Statistics(row_num-1)
-                    #carousel = Carousel_templateforA(booksheet.cell(row_num,question_column).value,booksheet.cell(row_num,answer_column).value,booksheet.cell(row_num,Office_column).value,booksheet.cell(row_num,OfficeTel_column).value)
+                    #carousel = Carousel_templateforA(booksheet.cell(row=row_num,column=question_column).value,booksheet.cell(row=row_num,column=answer_column).value,booksheet.cell(row=row_num,column=Office_column).value,booksheet.cell(row=row_num,column=OfficeTel_column).value)
                     #messages = TemplateSendMessage(alt_text='勞工問答系統', template=carousel)
-                    URL = ExtractURL(booksheet.cell(row_num,answer_column).value)
+                    URL = ExtractURL(booksheet.cell(row=row_num,column=answer_column).value)
                     bubble1 = BubbleContainer(direction='ltr',
                                                  body=BoxComponent(layout='vertical',
-                                                                   contents=[TextComponent(text=booksheet.cell(row_num,question_column).value,wrap=True,weight='bold',size='lg'),
-                                                                             TextComponent(text=booksheet.cell(row_num,answer_column).value,wrap=True)]))
+                                                                   contents=[TextComponent(text=booksheet.cell(row=row_num,column=question_column).value,wrap=True,weight='bold',size='lg'),
+                                                                             TextComponent(text=booksheet.cell(row=row_num,column=answer_column).value,wrap=True)]))
                     if(URL == None):                                                         
                         bubble2 = BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
                                                                                     contents=[BoxComponent(layout='vertical',
@@ -388,8 +388,8 @@ def creat_Reply(msg,id):
                     messages = creat_QAreply(Q_index,booksheet,id)
                     #message = []
                         #if(count < 10):
-                            #if(len(booksheet.cell(Q_index[i],question_column).value)<20):
-                                #items.append(QuickReplyButton(action=MessageAction(label=booksheet.cell(Q_index[i],question_column).value, text=booksheet.cell(Q_index[i],question_column).value)))
+                            #if(len(booksheet.cellrow=(Q_index[i],column=question_column).value)<20):
+                                #items.append(QuickReplyButton(action=MessageAction(label=booksheet.cell(row=Q_index[i],column=question_column).value, text=booksheet.cell(row=Q_index[i],column=question_column).value)))
                                 #count += 1
                     #messages = TextSendMessage(text=text,quick_reply=QuickReply(items))
                     #messages = [TextSendMessage(text = text),
@@ -406,27 +406,27 @@ def creat_Reply(msg,id):
                 row_num = 1
                 for row in booksheet.rows:
                     row_num += 1
-                    if(msg == booksheet.cell(row_num,question_column).value):
+                    if(msg == booksheet.cell(row=row_num,column=question_column).value):
                         Statistics(row_num-1)
-                        #carousel = Carousel_templateforA(booksheet.cell(row_num,question_column).value,booksheet.cell(row_num,answer_column).value,booksheet.cell(row_num,Office_column).value,booksheet.cell(row_num,OfficeTel_column).value)
+                        #carousel = Carousel_templateforA(booksheet.cell(row=row_num,column=question_column).value,booksheet.cell(row=row_num,column=answer_column).value,booksheet.cell(row=row_num,column=Office_column).value,booksheet.cell(row=row_num,column=OfficeTel_column).value)
                         #messages = TemplateSendMessage(alt_text='勞工問答系統', template=carousel)
-                        URL = ExtractURL(booksheet.cell(row_num,answer_column).value)
+                        URL = ExtractURL(booksheet.cell(row=row_num,column=answer_column).value)
                         bubble1 = BubbleContainer(direction='ltr',
                                                  body=BoxComponent(layout='vertical',
-                                                                   contents=[TextComponent(text=booksheet.cell(row_num,question_column).value,wrap=True,weight='bold',size='lg'),
-                                                                             TextComponent(text=booksheet.cell(row_num,answer_column).value,wrap=True)]))
+                                                                   contents=[TextComponent(text=booksheet.cell(row=row_num,column=question_column).value,wrap=True,weight='bold',size='lg'),
+                                                                             TextComponent(text=booksheet.cell(row=row_num,column=answer_column).value,wrap=True)]))
                         if(URL == None):
                             bubble2 = BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
                                                                                     contents=[BoxComponent(layout='vertical',
                                                                                               margin='md',
-                                                                                              contents=[ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row_num,Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row_num,OfficeTel_column).value),margin='md'),
+                                                                                              contents=[ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=row_num,column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=row_num,column=OfficeTel_column).value),margin='md'),
                                                                                                         ButtonComponent(style='primary',action=MessageAction(label='回問題選單',text=last_msg(id,'get',None)),margin='md')])]))
                         else:
                             bubble2 = BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
                                                                                     contents=[BoxComponent(layout='vertical',
                                                                                               margin='md',
                                                                                               contents=[ButtonComponent(style='primary',action=URIAction(label='前往網站',uri = URL),margin='md'),
-                                                                                                        ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row_num,Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row_num,OfficeTel_column).value),margin='md'),
+                                                                                                        ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=row_num,column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=row_num,column=OfficeTel_column).value),margin='md'),
                                                                                                         ButtonComponent(style='primary',action=MessageAction(label='回問題選單',text=last_msg(id,'get',None)),margin='md')])]))
                         carousel = CarouselContainer(contents = [bubble1,bubble2])
                         messages = FlexSendMessage(alt_text="勞工問答系統", contents=carousel)
@@ -538,10 +538,10 @@ def Statistics(index):
     workbook = load_workbook(QA_filename)
     sheets = workbook.get_sheet_names()         #从名称获取sheet
     booksheet = workbook.get_sheet_by_name(sheets[0])
-    if(booksheet.cell(index, Statistics_column).value == None):
-        booksheet.cell(index, Statistics_column).value = 1
+    if(booksheet.cell(row=index, column=Statistics_column).value == None):
+        booksheet.cell(row=index, column=Statistics_column).value = 1
     else:
-        booksheet.cell(index, Statistics_column).value = int(booksheet.cell(index, Statistics_column).value) + 1
+        booksheet.cell(row=index, column=Statistics_column).value = int(booksheet.cell(row=index, column=Statistics_column).value) + 1
     workbook.save(QA_filename)
     workbook.close()
     
@@ -551,10 +551,10 @@ def Statistics_list(index_list):
     sheets = workbook.get_sheet_names()         #从名称获取sheet
     booksheet = workbook.get_sheet_by_name(sheets[0])
     for index in index_list:
-        if(booksheet.cell(index, Statistics_column).value == None):
-            booksheet.cell(index, Statistics_column).value = 1
+        if(booksheet.cell(row=index, column=Statistics_column).value == None):
+            booksheet.cell(row=index, column=Statistics_column).value = 1
         else:
-            booksheet.cell(index, Statistics_column).value = int(booksheet.cell(index, Statistics_column).value) + 1
+            booksheet.cell(row=index, column=Statistics_column).value = int(booksheet.cell(row=index, column=Statistics_column).value) + 1
     workbook.save(QA_filename)
     workbook.close()
     
@@ -568,9 +568,9 @@ def FindKeyword_isinKeywordFile(msg):
     row_num = 1
     for row in booksheet.rows:
         row_num += 1 
-        if(booksheet.cell(row_num,question_column).value == msg):
-            office = booksheet.cell(row_num,Office_column).value
-            phone = booksheet.cell(row_num,OfficeTel_column).value
+        if(booksheet.cell(row=row_num,column=question_column).value == msg):
+            office = booksheet.cell(row=row_num,column=Office_column).value
+            phone = booksheet.cell(row=row_num,column=OfficeTel_column).value
     return office, phone
 
 def FindRelated_Q_inFile(msg):
@@ -584,10 +584,10 @@ def FindRelated_Q_inFile(msg):
     for row in booksheet.rows:
         row_num += 1
         
-        if(booksheet.cell(row_num,question_column).value != None):
+        if(booksheet.cell(row=row_num,column=question_column).value != None):
             for column in [question_column, answer_column, MajorItem_column, Item1_column, Item2_column, Item3_column]:
-                if(booksheet.cell(row_num,column).value.find(msg) != -1):
-                    Q_list_temp.append(tuple([booksheet.cell(row_num,Statistics_column).value,booksheet.cell(row_num,question_column).value]))
+                if(booksheet.cell(row=row_num,column=column).value.find(msg) != -1):
+                    Q_list_temp.append(tuple([booksheet.cell(row=row_num,column=Statistics_column).value,booksheet.cell(row=row_num,column=question_column).value]))
                     break
     #print(Q_list_temp)        
     Q_list = sorted(Q_list_temp,reverse=True) 
@@ -633,12 +633,12 @@ def Get_state(id):
     row_num = 1
     for row in booksheet.rows:
         row_num += 1
-        if(booksheet.cell(row_num,ID_column).value == id):
-            state = booksheet.cell(row_num,state_column).value
+        if(booksheet.cell(row=row_num,column=ID_column).value == id):
+            state = booksheet.cell(row=row_num,column=state_column).value
             break
-        elif(booksheet.cell(row_num,ID_column).value == None):
-            booksheet.cell(row_num,ID_column).value = id
-            booksheet.cell(row_num,state_column).value = '搜索'
+        elif(booksheet.cell(row=row_num,column=ID_column).value == None):
+            booksheet.cell(row=row_num,column=ID_column).value = id
+            booksheet.cell(row=row_num,column=state_column).value = '搜索'
             state = '搜索'
             break
     workbook.save(ID_filename)
@@ -653,27 +653,27 @@ def last_msg(id,act,msg):
     row_num = 1
     for row in booksheet.rows:
         row_num += 1
-        if(booksheet.cell(row_num,ID_column).value == id):
+        if(booksheet.cell(row=row_num,column=ID_column).value == id):
             if(act == 'getfather'):
-                msg = booksheet.cell(row_num,lastmsg_column).value
+                msg = booksheet.cell(row=row_num,column=lastmsg_column).value
                 father = trie.search_father(msg)
                 if(father == None):
                     father = '引導式問答'
                 #print(father)
             elif(act == 'get'):
-                msg = booksheet.cell(row_num,lastmsg_column).value
+                msg = booksheet.cell(row=row_num,column=lastmsg_column).value
                 father = msg
             elif(act == 'write'):
-                booksheet.cell(row_num,lastmsg_column).value = msg
+                booksheet.cell(row=row_num,column=lastmsg_column).value = msg
             elif(act == 'get_search'):
-                msg = booksheet.cell(row_num,lastmsg_search_column).value
+                msg = booksheet.cell(row=row_num,column=lastmsg_search_column).value
                 father = msg
             elif(act == 'write_search'):
-                booksheet.cell(row_num,lastmsg_search_column).value = msg
+                booksheet.cell(row=row_num,column=lastmsg_search_column).value = msg
             break
-        elif(booksheet.cell(row_num,ID_column).value == None):
-            booksheet.cell(row_num,ID_column).value = id
-            booksheet.cell(row_num,lastmsg_column).value = '勞工Q&A'
+        elif(booksheet.cell(row=row_num,column=ID_column).value == None):
+            booksheet.cell(row=row_num,column=ID_column).value = id
+            booksheet.cell(row=row_num,column=lastmsg_column).value = '勞工Q&A'
             father = '勞工Q&A'
             break
     workbook.save(ID_filename)
@@ -730,8 +730,8 @@ def file_check():
     row_num = 1
     for row in booksheet.rows:
         row_num += 1
-        if(booksheet.cell(row_num,Statistics_column).value == None and booksheet.cell(row_num,question_column).value != None):
-            booksheet.cell(row_num,Statistics_column).value = 0
+        if(booksheet.cell(row=row_num,column=Statistics_column).value == None and booksheet.cell(row=row_num,column=question_column).value != None):
+            booksheet.cell(row=row_num,column=Statistics_column).value = 0
     workbook.save(QA_filename)
     workbook.close()
 
@@ -746,9 +746,9 @@ def format_check():
         row_num = 1
         for row in booksheet.rows:
             row_num += 1
-            if(booksheet.cell(row_num,column).value != None):
-                if(booksheet.cell(row_num,column).value not in item_list):
-                    item_list.append(booksheet.cell(row_num,column).value)
+            if(booksheet.cell(row=row_num,column=column).value != None):
+                if(booksheet.cell(row=row_num,column=column).value not in item_list):
+                    item_list.append(booksheet.cell(row=row_num,column=column).value)
         
         c = check_column
         c.remove(column)
@@ -757,8 +757,8 @@ def format_check():
         for row in booksheet.rows:
             row_num += 1
             for col in c:
-                if(booksheet.cell(row_num,col).value in item_list):
-                    print('row : '+ str(row_num) + ' ' + booksheet.cell(row_num,column+1).value + ' 與前面項目名稱重複')
+                if(booksheet.cell(row=row_num,column=col).value in item_list):
+                    print('row : '+ str(row_num) + ' ' + booksheet.cell(row=row_num,column=column+1).value + ' 與前面項目名稱重複')
     workbook.close()            
 
 
@@ -780,23 +780,23 @@ def creat_QAreply(Q_index,booksheet,id):
     count=0
     for i in range(0,len(Q_index)):
         index_list.append(Q_index[i])
-        url = ExtractURL(booksheet.cell(Q_index[i],answer_column).value)
+        url = ExtractURL(booksheet.cell(row=Q_index[i],column=answer_column).value)
         if(url == None):
             content.append(BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
-                                                                   contents=[TextComponent(text=booksheet.cell(Q_index[i],question_column).value,wrap=True,weight='bold',size='lg'),
-                                                                             TextComponent(text=booksheet.cell(Q_index[i],answer_column).value,wrap=True)]),
+                                                                   contents=[TextComponent(text=booksheet.cell(row=Q_index[i],column=question_column).value,wrap=True,weight='bold',size='lg'),
+                                                                             TextComponent(text=booksheet.cell(row=Q_index[i],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(Q_index[i],question_column).value),margin='md'),
-                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(Q_index[i],Office_column).value + '電話',uri = 'tel://' + booksheet.cell(Q_index[i],OfficeTel_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
+                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(Q_index[i],Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_index[i],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label = '回前分類',text = value),margin='md')])))
         else:
             content.append(BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
-                                                                   contents=[TextComponent(text=booksheet.cell(Q_index[i],question_column).value,wrap=True,weight='bold',size='lg'),
-                                                                             TextComponent(text=booksheet.cell(Q_index[i],answer_column).value,wrap=True)]),
+                                                                   contents=[TextComponent(text=booksheet.cell(row=Q_index[i],column=question_column).value,wrap=True,weight='bold',size='lg'),
+                                                                             TextComponent(text=booksheet.cell(row=Q_index[i],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(Q_index[i],question_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='前往網站',uri = url),margin='md'),
-                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(Q_index[i],Office_column).value + '電話',uri = 'tel://' + booksheet.cell(Q_index[i],OfficeTel_column).value),margin='md'),
+                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_index[i],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_index[i],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label = '回前分類',text = value),margin='md')])))
         count+=1
         if(count > 40):
@@ -824,10 +824,10 @@ def creat_QAreply_search(msg):
     for row in booksheet.rows:
         row_num += 1
         
-        if(booksheet.cell(row_num,question_column).value != None):
+        if(booksheet.cell(row=row_num,column=question_column).value != None):
             for column in [question_column, answer_column, MajorItem_column, Item1_column, Item2_column, Item3_column]:
-                if(booksheet.cell(row_num,column).value.find(msg) != -1):
-                    Q_list_temp.append(tuple([booksheet.cell(row_num,Statistics_column).value,row_num]))
+                if(booksheet.cell(row=row_num,column=column).value.find(msg) != -1):
+                    Q_list_temp.append(tuple([booksheet.cell(row=row_num,column=Statistics_column).value,row_num]))
                     break
     #print(Q_list_temp)        
     Q_list = sorted(Q_list_temp,reverse=True) 
@@ -838,24 +838,24 @@ def creat_QAreply_search(msg):
         return None
     for i in range(0,len(Q_list)):
         index_list.append(Q_list[i][1])
-        url = ExtractURL(booksheet.cell(Q_list[i][1],answer_column).value)
+        url = ExtractURL(booksheet.cell(row=Q_list[i][1],column=answer_column).value)
         if(url == None):
             content.append(BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
-                                                                   contents=[TextComponent(text=booksheet.cell(Q_list[i][1],question_column).value,wrap=True,weight='bold',size='lg'),
-                                                                             TextComponent(text=booksheet.cell(Q_list[i][1],answer_column).value,wrap=True)]),
+                                                                   contents=[TextComponent(text=booksheet.cell(row=Q_list[i][1],column=question_column).value,wrap=True,weight='bold',size='lg'),
+                                                                             TextComponent(text=booksheet.cell(row=Q_list[i][1],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(Q_list[i][1],question_column).value),margin='md'),
-                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(Q_list[i][1],Office_column).value + '電話',uri = 'tel://' + booksheet.cell(Q_list[i][1],OfficeTel_column).value),margin='md'),
-                                                                             ButtonComponent(style='primary',action=MessageAction(label='其他相關問題(引導式問答)',text='引導式問答\n'+booksheet.cell(Q_list[i][1],Item3_column).value),margin='md')])))
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_list[i][1],column=question_column).value),margin='md'),
+                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_list[i][1],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_list[i][1],column=OfficeTel_column).value),margin='md'),
+                                                                             ButtonComponent(style='primary',action=MessageAction(label='其他相關問題(引導式問答)',text='引導式問答\n'+booksheet.cell(row=Q_list[i][1],column=Item3_column).value),margin='md')])))
         else:
             content.append(BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
-                                                                   contents=[TextComponent(text=booksheet.cell(Q_list[i][1],question_column).value,wrap=True,weight='bold',size='lg'),
-                                                                             TextComponent(text=booksheet.cell(Q_list[i][1],answer_column).value,wrap=True)]),
+                                                                   contents=[TextComponent(text=booksheet.cell(row=Q_list[i][1],column=question_column).value,wrap=True,weight='bold',size='lg'),
+                                                                             TextComponent(text=booksheet.cell(row=Q_list[i][1],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(Q_list[i][1],question_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_list[i][1],column=question_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='前往網站',uri = url),margin='md'),
-                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(Q_list[i][1],Office_column).value + '電話',uri = 'tel://' + booksheet.cell(Q_list[i][1],OfficeTel_column).value),margin='md'),
-                                                                             ButtonComponent(style='primary',action=MessageAction(label='其他相關問題(引導式問答)',text='引導式問答\n'+booksheet.cell(Q_list[i][1],Item3_column).value),margin='md')])))
+                                                                             ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_list[i][1],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_list[i][1],column=OfficeTel_column).value),margin='md'),
+                                                                             ButtonComponent(style='primary',action=MessageAction(label='其他相關問題(引導式問答)',text='引導式問答\n'+booksheet.cell(row=Q_list[i][1],column=Item3_column).value),margin='md')])))
         count+=1
         if(count > 40):
             break
