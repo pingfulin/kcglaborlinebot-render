@@ -593,7 +593,7 @@ def FindRelated_Q_inFile(msg):
     Q_list = sorted(Q_list_temp,reverse=True) 
     return Q_list
 def ChangeWord(msg):
-    F=codecs.open(synonyms_filename,'rt','utf-8')
+    F= open(synonyms_filename,'r','utf-8')
     content = F.read().encode('utf-8')
     rows = content.split('\n') 
     F.close()
