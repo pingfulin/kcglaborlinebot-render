@@ -287,7 +287,7 @@ def creat_Reply(msg,id):
                         bubble2 = BubbleContainer(direction='ltr',body=BoxComponent(layout='vertical',
                                                                                     contents=[BoxComponent(layout='vertical',
                                                                                               margin='md',
-                                                                                              contents=[ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row_num,Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row_num,OfficeTel_column).value),margin='md'),
+                                                                                              contents=[ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=row_num,column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=row_num,column=OfficeTel_column).value),margin='md'),
                                                                                                         ButtonComponent(style='primary',action=MessageAction(label='回問題選單',text=last_msg(id,'get_search',None)),margin='md'),
                                                                                                         ButtonComponent(style='primary',action=MessageAction(label='其他問題(引導式問答)',text='其他'),margin='md')])]))
                     else:  
@@ -295,7 +295,7 @@ def creat_Reply(msg,id):
                                                                                     contents=[BoxComponent(layout='vertical',
                                                                                               margin='md',
                                                                                               contents=[ButtonComponent(style='primary',action=URIAction(label='前往網站',uri = URL),margin='md'),
-                                                                                                        ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row_num,Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row_num,OfficeTel_column).value),margin='md'),
+                                                                                                        ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=row_num,column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=row_num,column=OfficeTel_column).value),margin='md'),
                                                                                                         ButtonComponent(style='primary',action=MessageAction(label='回問題選單',text=last_msg(id,'get_search',None)),margin='md'),
                                                                                                         ButtonComponent(style='primary',action=MessageAction(label='其他問題(引導式問答)',text='其他'),margin='md')])]))
                     carousel = CarouselContainer(contents = [bubble1,bubble2])
