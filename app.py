@@ -245,7 +245,7 @@ def creat_Reply(msg,id):
                 break
         workbook.save(ID_filename)
         workbook.close()
-        reply = '您現在可根據需要諮詢的項目進行查詢，可以先輸入「資遣通報」試試!!'
+        reply = '請輸入關鍵字進行查詢，例如「資遣通報」!'
         messages = TextSendMessage(text = reply)
     
     else :
@@ -788,7 +788,7 @@ def creat_QAreply(Q_index,booksheet,id):
                                                                    contents=[TextComponent(text=booksheet.cell(row=Q_index[i],column=question_column).value,wrap=True,weight='bold',size='lg'),
                                                                              TextComponent(text=booksheet.cell(row=Q_index[i],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '轉文字(可分享、連結)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_index[i],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_index[i],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label = '回前分類',text = value),margin='md')])))
         else:
@@ -796,7 +796,7 @@ def creat_QAreply(Q_index,booksheet,id):
                                                                    contents=[TextComponent(text=booksheet.cell(row=Q_index[i],column=question_column).value,wrap=True,weight='bold',size='lg'),
                                                                              TextComponent(text=booksheet.cell(row=Q_index[i],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '轉文字(可分享、連結)',data = booksheet.cell(row=Q_index[i],column=question_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='前往網站',uri = url),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_index[i],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_index[i],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label = '回前分類',text = value),margin='md')])))
@@ -846,7 +846,7 @@ def creat_QAreply_search(msg):
                                                                    contents=[TextComponent(text=booksheet.cell(row=Q_list[i][1],column=question_column).value,wrap=True,weight='bold',size='lg'),
                                                                              TextComponent(text=booksheet.cell(row=Q_list[i][1],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_list[i][1],column=question_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '轉文字(可分享、連結)',data = booksheet.cell(row=Q_list[i][1],column=question_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_list[i][1],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_list[i][1],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label='其他相關問題(引導式問答)',text='引導式問答\n'+booksheet.cell(row=Q_list[i][1],column=Item3_column).value),margin='md')])))
         else:
@@ -854,7 +854,7 @@ def creat_QAreply_search(msg):
                                                                    contents=[TextComponent(text=booksheet.cell(row=Q_list[i][1],column=question_column).value,wrap=True,weight='bold',size='lg'),
                                                                              TextComponent(text=booksheet.cell(row=Q_list[i][1],column=answer_column).value,wrap=True)]),
                                                        footer=BoxComponent(layout='vertical',
-                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '文字格式(可複製)',data = booksheet.cell(row=Q_list[i][1],column=question_column).value),margin='md'),
+                                                                   contents=[ButtonComponent(style='primary',action=PostbackAction(label = '轉文字(可分享、連結)',data = booksheet.cell(row=Q_list[i][1],column=question_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='前往網站',uri = url),margin='md'),
                                                                              ButtonComponent(style='primary',action=URIAction(label='撥打' + booksheet.cell(row=Q_list[i][1],column=Office_column).value + '電話',uri = 'tel://' + booksheet.cell(row=Q_list[i][1],column=OfficeTel_column).value),margin='md'),
                                                                              ButtonComponent(style='primary',action=MessageAction(label='其他相關問題(引導式問答)',text='引導式問答\n'+booksheet.cell(row=Q_list[i][1],column=Item3_column).value),margin='md')])))
