@@ -7,6 +7,8 @@ from flask import Flask, request, abort,render_template,jsonify
 import codecs
 import trie_v4
 import re
+import os
+
 import openpyxl
 from openpyxl import Workbook,load_workbook
 import csv
@@ -58,13 +60,17 @@ ID_filename = './table/' + booksheet.cell(row=2, column=3).value + '.xlsx'
 URL_filename = './table/' + booksheet.cell(row=5, column=3).value + '.xlsx'
 ###################################
 #############取得LINEBOT資訊#######
+#以下暫時取消資料表載入，改用render env
+"""
+
 LINEinfo = './LINEBOT資訊.xlsx'
 workbook = load_workbook(LINEinfo)
 sheets = workbook.get_sheet_names()         #从名称获取sheet
 booksheet = workbook.get_sheet_by_name(sheets[0])
+"""
 
-line_bot_api = LineBotApi(booksheet.cell(row=1, column=2).value)
-handler = WebhookHandler(booksheet.cell(row=2, column=2).value)
+line_bot_api = LineBotApi(os.environ.get('token1'))
+handler = WebhookHandler(os.environ.get('secret1'))
 ###################################
 workbook = load_workbook(URL_filename)
 sheets = workbook.get_sheet_names()         #从名称获取sheet
