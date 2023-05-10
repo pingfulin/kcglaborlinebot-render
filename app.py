@@ -773,7 +773,7 @@ def format_check():
 
 def ExtractURL(text):
     #改變網址的正則表達式如下result = re.search("(?P<url>https?://[a-zA-Z0-9_.\/]+)", text)
-    result = re.search(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, text)
+    result = re.search("(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/)", text)
     if(result == None):
         return None
     else:
