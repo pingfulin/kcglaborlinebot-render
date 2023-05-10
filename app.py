@@ -168,7 +168,7 @@ def creat_Reply(msg,id):
     items = []
     
     if(msg == '勞工Q&A'):
-        text = '請選擇您想要的問答模式\n引導式問答 : 依照分類項目提供相關問題之解答\n搜索式問答 : 輸入關鍵字提供相關問題之解答'
+        text = '請選擇您想要的問答模式:'
         #items.append(QuickReplyButton(action=MessageAction(label='引導式問答', text='引導式問答')))
         #items.append(QuickReplyButton(action=MessageAction(label='搜索式問答', text='搜索式問答')))
         #messages = TextSendMessage(text=text,quick_reply=QuickReply(items))    
@@ -773,7 +773,7 @@ def format_check():
 
 def ExtractURL(text):
     #改變網址的正則表達式如下result = re.search("(?P<url>https?://[a-zA-Z0-9_.\/]+)", text)
-    result = re.search("/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/", text)
+    result = re.search(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, text)
     if(result == None):
         return None
     else:
