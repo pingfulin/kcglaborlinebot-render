@@ -94,7 +94,7 @@ print('tree 建立完成')
 
 
 
-
+"""註記錯誤
 @app.route('/')
 def index():
     #return "hello flask!"
@@ -104,7 +104,7 @@ def index():
 @app.route('/tuna')
 def tuna():
     return 'Hi, Tuna.'
-
+"""
 @app.route('/<textinput>')
 def textinput2(textinput):
 
